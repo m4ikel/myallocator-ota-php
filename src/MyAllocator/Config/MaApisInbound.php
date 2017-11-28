@@ -13,9 +13,23 @@ return array(
     'HealthCheck' => array(
         'args' => array(
             'req' => array(
-                'verb',
+                'verb'
             ),
             'opt' => array()
+        )
+    ),
+    'CreateProperty' => array(
+        'args' => array(
+            'req' => array(
+                'verb',
+                'mya_property_id',
+                'ota_property_id',
+                'Property'
+            ),
+            'opt' => array(
+                'ota_property_password',
+                'guid'
+            )
         )
     ),
     'SetupProperty' => array(
@@ -27,6 +41,7 @@ return array(
                 'ota_regcode'
             ),
             'opt' => array(
+                'ota_property_password',
                 'guid'
             )
         )
@@ -36,9 +51,10 @@ return array(
             'req' => array(
                 'verb',
                 'mya_property_id',
-                'ota_property_id',
+                'ota_property_id'
             ),
             'opt' => array(
+                'ota_property_password',
                 'guid'
             )
         )
@@ -52,6 +68,7 @@ return array(
                 'booking_id'
             ),
             'opt' => array(
+                'ota_property_password',
                 'guid',
                 'booking_id_version'
             )
@@ -62,9 +79,24 @@ return array(
             'req' => array(
                 'verb',
                 'mya_property_id',
-                'ota_property_id',
+                'ota_property_id'
             ),
             'opt' => array(
+                'ota_property_password',
+                'ota_booking_version',
+                'guid'
+            )
+        )
+    ),
+    'GetRatePlans' => array(
+        'args' => array(
+            'req' => array(
+                'verb',
+                'mya_property_id',
+                'ota_property_id'
+            ),
+            'opt' => array(
+                'ota_property_password',
                 'guid'
             )
         )
@@ -75,9 +107,11 @@ return array(
                 'verb',
                 'mya_property_id',
                 'ota_property_id',
+                'currency',
                 'Inventory'
             ),
             'opt' => array(
+                'ota_property_password',
                 'guid'
             )
         )

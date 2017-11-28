@@ -31,11 +31,27 @@ interface MaInboundInterface
     /**
      * Setup a new property on OTA.
      *
+     * args['verb']*                    string Defines the API endpoint method.
+     * args['guid']*                    string A unique 36 character code that identifies a request.
+     * args['ota_property_id']*         string For this call always empty
+     * args['ota_property_password']*   string For this call always empty
+     * args['mya_property_id']*         string The property_id in MyAllocator.
+     * args['Property']*                array The property to insert.
+     *
+     * @param array $args (See above)
+     *
+     * @return \MyAllocator\phpsdkota\src\Object\MaResponse
+     */
+    public function createProperty($args);
+
+    /**
+     * Setup a new property on OTA.
+     *
      * args['verb']*            string Defines the API endpoint method.
      * args['guid']*            string A unique 36 character code that identifies a request.
      * args['mya_property_id']* string The property_id in MyAllocator.
      * args['ota_property_id']* string The property_id in OTA.
-     * args['ota_regcode']      string ? TODO
+     * args['ota_regcode']      string The password used to access the OTA extranet by the client.
      *
      * @param array $args (See above)
      *
@@ -65,7 +81,7 @@ interface MaInboundInterface
      * args['mya_property_id']*     string The property_id in MyAllocator.
      * args['ota_property_id']*     string The property_id in OTA.
      * args['booking_id']*          string The booking identifier.
-     * args['booking_id_version']  string The OTA version at time of booking.
+     * args['booking_id_version']   string The OTA version at time of booking.
      *
      * @param array $args (See above)
      *
@@ -90,6 +106,20 @@ interface MaInboundInterface
     public function getBookingList($args);
 
     /**
+     * Get a list of rate plans information for a property.
+     *
+     * args['verb']*            string Defines the API endpoint method.
+     * args['guid']*            string A unique 36 character code that identifies a request.
+     * args['mya_property_id']* string The property_id in MyAllocator.
+     * args['ota_property_id']* string The property_id in OTA.
+     *
+     * @param array $args (See above)
+     *
+     * @return \MyAllocator\phpsdkota\src\Object\MaResponse
+     */
+    public function getRatePlans($args);
+
+    /**
      * Update inventory (rates and availability) for a property.
      *
      * args['verb']*            string Defines the API endpoint method.
@@ -97,7 +127,8 @@ interface MaInboundInterface
      * args['mya_property_id']* string The property_id in MyAllocator.
      * args['ota_property_id']* string The property_id in OTA.
      * args['ota_room_id']*     string The room_id in OTA.
-     * args['Inventory']*       string The rates to update.
+     * args['currency']*        string The ISO-4217 currency of rates.
+     * args['Inventory']*       array The rates to update.
      *
      * @param array $args (See above)
      *

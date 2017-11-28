@@ -116,18 +116,18 @@ class MaRouter
         }
 
         // MA:OTA property validation
-        // Don't validate property on HealthCheck or SetupProperty
-        if ($request['verb'] != 'HealthCheck' && $request['verb'] != 'SetupProperty') {
-            $rsp = $this->ota_intf->authenticateProperty($request);
-            if (!$rsp->success) {
-                return $rsp->response();
-            }
+        $rsp = $this->ota_intf->authenticateProperty($request);
+        if (!$rsp->success) {
+            return $rsp->response();
         }
 
         // Invoke method
         switch ($request['verb']) {
             case 'HealthCheck':
                 $rsp->success();
+                break;
+            case 'CreateProperty':
+                $rsp = $this->ota_intf->createProperty($request);
                 break;
             case 'SetupProperty':
                 $rsp = $this->ota_intf->setupProperty($request);
@@ -140,6 +140,9 @@ class MaRouter
                 break;
             case 'GetBookingList':
                 $rsp = $this->ota_intf->getBookingList($request);
+                break;
+            case 'GetRatePlans':
+                $rsp = $this->ota_intf->getRatePlans($request);
                 break;
             case 'ARIUpdate':
                 $rsp = $this->ota_intf->ARIUpdate($request);

@@ -4,10 +4,12 @@ API documentation can be found at http://myallocator.github.io/myallocator-php-s
 Inbound (MA -> OTA):
 
   HealthCheck
+  CreateProperty
   SetupProperty
   GetRoomTypes
   GetBookingId
   GetBookingList
+  GetRatePlans
   ARIUpdate
 
 Outbound (OTA -> MA):
